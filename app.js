@@ -1,12 +1,35 @@
-const express = require('express')
-const app = express()
+const express = require("express");
+const hbs = require("hbs");
+
+const app = express();
+
+//Handlebar
+
+hbs.registerPartials(__dirname + "/views/partials");
+app.set("view engine", "hbs");
 
 //servir contenido estatico
-app.use(express.static('public'))
+// app.use(express.static('public'))
 
+app.use(express.static("PaginaCurso"));
 
-// app.get('/', function (req, res) {
-//   res.send('Hello World')
-// })
+app.get("/", function (req, res) {
+    res.render("home", {
+        nombre: "keyner",
+        titulo: "prueba de node",
+    });
+});
 
-app.listen(8080)
+app.get("/index", function (req, res) {
+    res.render("home")
+});
+
+app.get("/generic", function (req, res) {
+    res.render("generic");
+});
+
+app.get("/elements", function (req, res) {
+    res.render("elements");
+});
+
+app.listen(8080);
