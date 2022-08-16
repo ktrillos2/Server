@@ -1,6 +1,9 @@
 const express = require("express");
 const hbs = require("hbs");
 
+require('dotenv').config();
+const port=process.env.PORT
+
 const app = express();
 
 //Handlebar
@@ -32,4 +35,4 @@ app.get("/elements", function (req, res) {
     res.render("elements");
 });
 
-app.listen(8080);
+app.listen(port);
