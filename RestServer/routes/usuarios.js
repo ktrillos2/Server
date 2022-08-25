@@ -12,7 +12,10 @@ const {
 
 router.get("/", usuariosGet);
 
-router.put("/:id", usuariosPut);
+router.put("/:id", [
+	check("id", "el id no es valido").isMongoId(),
+	validarCampos
+], usuariosPut);
 
 router.post("/", [
 	check("password", "el password debe de ser mas de 6 letras").isLength({ min: 6 }),
