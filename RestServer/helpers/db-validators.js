@@ -8,19 +8,23 @@ const esRolValido = async (rol = "") => {
 		throw new Error(`el rol ${rol} no esta registrado en la base de datos`);
 	}
 };
-const existeEmail = async(correo)=> {
-    
-    
-    const email=await Usuario.findOne({ correo });
+const existeEmail = async (correo) => {
+	const email = await Usuario.findOne({correo})
 
-    if (email) {
-        throw new Error(`el correo ${correo} ya existe`);
-    }
+	if (email) {
+		throw new Error(`el correo ${correo} ya existe`);
+	}
+};
+const existeUsuarioId = async (id) => {
+	const existe = await Usuario.findById(id);
 
-}
-
+	if (!existe) {
+		throw new Error(`el id ${id} no existe`);
+	}
+};
 
 module.exports = {
-    esRolValido,
+	esRolValido,
     existeEmail,
+    existeUsuarioId
 };
